@@ -33,7 +33,7 @@ app.use(helmet());
 /////////////
 
 var api = require(path.join(ROUTES_FOLDER, "api", "api.js"));
-app.use(BASE_PATH + "api/", api);
+app.use(path.join(BASE_PATH, "api"), api);
 
 /////////////
 // Startup //
