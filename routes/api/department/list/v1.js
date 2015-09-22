@@ -32,7 +32,7 @@ router.get("/",
         res.status(500).send(JSON.stringify(err));
       } else {
         res.send({
-          departments: result
+          departments: result.rows
         });
       }
     });
