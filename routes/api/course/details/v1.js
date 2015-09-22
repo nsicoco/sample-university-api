@@ -30,9 +30,9 @@ router.get("/:coursecode",
     var query =
       "SELECT crscode AS coursecode, name, descr AS description " +
       "FROM course " +
-      "WHERE coursecode=$1 " +
+      "WHERE crscode=$1 " +
       "LIMIT 1";
-    var values = [req.params.coursecode];
+    var values = [req.params.coursecode.toUpperCase()];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
         res.status(500).send(JSON.stringify(err));
