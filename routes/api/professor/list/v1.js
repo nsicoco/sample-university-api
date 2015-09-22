@@ -15,21 +15,21 @@ var router = express.Router();
 /////////////////////////
 
 /**
- * @api {get} /api/course/list/v1 List courses
- * @apiName ListCourseV1
- * @apiGroup Course
+ * @api {get} /api/professor/list/v1 List professors
+ * @apiName ListProfessorV1
+ * @apiGroup Professor
  *
- * @apiSuccess (200) {Object[]} courses               List of courses
- * @apiSuccess (200) {String}   courses.coursecode    6-character course code
- * @apiSuccess (200) {String}   courses.name          Name of course
+ * @apiSuccess (200) {Object[]} professors        List of professors
+ * @apiSuccess (200) {Number}   professors.id     Id of professor
+ * @apiSuccess (200) {String}   professors.name   Name of professor
  */
 router.get("/",
   function(req, res) {
-    var psName = "api_course_list_v1";  // Prepared Statement Name
+    var psName = "api_professor_list_v1";  // Prepared Statement Name
     var query =
-      "SELECT crscode AS coursecode, name " +
-      "FROM course " +
-      "ORDER BY coursecode";
+      "SELECT id, name " +
+      "FROM professor " +
+      "ORDER BY id";
     var values = [];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
@@ -37,7 +37,7 @@ router.get("/",
         logger.error(err);
       } else {
         res.json({
-          courses: result.rows
+          professors: result.rows
         });
       }
     });

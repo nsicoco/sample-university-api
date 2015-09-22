@@ -32,14 +32,18 @@ router.get("/:coursecode",
       "FROM course " +
       "WHERE crscode=$1 " +
       "LIMIT 1";
-    var values = [req.params.coursecode.toUpperCase()];
+    var values = [
+      req.params.coursecode.toUpperCase() // $1
+    ];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
-        res.status(500).send(JSON.stringify(err));
+        res.status(500).json(err);
         logger.error(err);
       } else {
         if(result.rows.length === 0) {
-          res.status(404).send("Course not found.");
+          res.status(404).json({
+            error: "Course not found."
+          });
         } else {
           res.json(result.rows[0]);
         }

@@ -33,7 +33,7 @@ router.get("/",
     var values = [];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
-        res.status(500).send(JSON.stringify(err));
+        res.status(500).json(err);
         logger.error(err);
       } else {
         res.json({
