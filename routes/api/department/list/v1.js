@@ -26,7 +26,10 @@ var router = express.Router();
 router.get("/",
   function(req, res) {
     var psName = "api_department_list_v1";  // Prepared Statement Name
-    var query = "SELECT * FROM department";
+    var query =
+      "SELECT * " +
+      "FROM department " +
+      "ORDER BY id";
     var values = [];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
