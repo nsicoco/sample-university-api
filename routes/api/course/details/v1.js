@@ -32,7 +32,7 @@ router.get("/:coursecode",
       "FROM course " +
       "WHERE coursecode=$1 " +
       "LIMIT 1";
-    var values = [];
+    var values = [req.params.coursecode];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
         res.status(500).send(JSON.stringify(err));
