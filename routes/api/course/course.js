@@ -10,11 +10,8 @@ var router = express.Router();
 // Routing //
 /////////////
 
-var course = require("./course/course.js");
-router.use("/course", course);
-
-var department = require("./department/department.js");
-router.use("/department", department);
+var list = require("./list/list.js");
+router.use("/list", list);
 
 ////////////
 // Export //
