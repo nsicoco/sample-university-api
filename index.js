@@ -10,6 +10,7 @@ var path = require("path");
 var app = express();
 var BASE_PATH = "/";
 var ROUTES_FOLDER = path.join(__dirname, "routes");
+global.LIBS_FOLDER = path.join(__dirname, "libs");
 
 // Configure Winston Logger:
 logger.remove(logger.transports.Console);

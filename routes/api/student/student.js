@@ -11,8 +11,9 @@ var router = express.Router();
 // Routing //
 /////////////
 
-var department = require(path.join(__dirname, "department", "department.js"));
-router.use("/department", department);
+router.get("/", function(req, res) {
+  res.send("student");
+});
 
 ////////////
 // Export //

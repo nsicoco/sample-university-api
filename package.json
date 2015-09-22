@@ -19,6 +19,7 @@
   "homepage": "https://github.com/nsicoco/sample-university-api#readme",
   "dependencies": {
     "async": "^1.4.2",
+    "body-parser": "^1.14.0",
     "express": "^4.13.3",
     "helmet": "^0.11.0",
     "pg": "^4.4.2",

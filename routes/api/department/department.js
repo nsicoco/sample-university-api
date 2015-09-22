@@ -11,8 +11,8 @@ var router = express.Router();
 // Routing //
 /////////////
 
-var department = require(path.join(__dirname, "department", "department.js"));
-router.use("/department", department);
+var list = require(path.join(__dirname, "list", "list.js"));
+router.use("/list", list);
 
 ////////////
 // Export //
