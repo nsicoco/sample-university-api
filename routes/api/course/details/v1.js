@@ -15,30 +15,34 @@ var router = express.Router();
 /////////////////////////
 
 /**
- * @api {get} /api/course/list/v1 List courses
- * @apiName ListCourseV1
+ * @api {get} /api/course/list/v1/:coursecode Get full details of a course
+ * @apiName DetailsCourseV1
  * @apiGroup Course
  *
- * @apiSuccess (200) {Object[]} courses               List of courses
- * @apiSuccess (200) {String}   courses.coursecode    6-character course code
- * @apiSuccess (200) {String}   courses.name          Name of course
+ * @apiSuccess (200) {Object} course              List of courses
+ * @apiSuccess (200) {String} course.coursecode   6-character course code
+ * @apiSuccess (200) {String} course.name         Name of course
+ * @apiSuccess (200) {String} course.description  Description of course
  */
-router.get("/",
+router.get("/:coursecode",
   function(req, res) {
     var psName = "api_course_list_v1";  // Prepared Statement Name
     var query =
-      "SELECT crscode AS coursecode, name " +
+      "SELECT crscode AS coursecode, name, descr AS description " +
       "FROM course " +
-      "ORDER BY coursecode";
+      "WHERE coursecode=$1 " +
+      "LIMIT 1";
     var values = [];
     dbHelper.query(psName, query, values, function(err, result) {
       if(err) {
         res.status(500).send(JSON.stringify(err));
         logger.error(err);
       } else {
-        res.json({
-          courses: result.rows
-        });
+        if(result.rows.length === 0) {
+          res.status(404).send("Course not found.");
+        } else {
+          res.json(result.rows[0]);
+        }
       }
     });
   }
