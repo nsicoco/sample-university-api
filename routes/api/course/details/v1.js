@@ -26,7 +26,7 @@ var router = express.Router();
  */
 router.get("/:coursecode",
   function(req, res) {
-    var psName = "api_course_list_v1";  // Prepared Statement Name
+    var psName = "api_course_details_v1";  // Prepared Statement Name
     var query =
       "SELECT crscode AS coursecode, name, descr AS description " +
       "FROM course " +

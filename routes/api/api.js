@@ -19,6 +19,9 @@ router.use("/department", department);
 var professor = require("./professor/professor.js");
 router.use("/professor", professor);
 
+var student = require("./student/student.js");
+router.use("/student", student);
+
 ////////////
 // Export //
 ////////////

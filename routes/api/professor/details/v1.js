@@ -15,7 +15,7 @@ var router = express.Router();
 /////////////////////////
 
 /**
- * @api {get} /api/professor/list/v1/:id Get full details of a professor
+ * @api {get} /api/professor/details/v1/:id Get full details of a professor
  * @apiName DetailsProfessorV1
  * @apiGroup Professor
  *
@@ -29,14 +29,13 @@ var router = express.Router();
  */
 router.get("/:id",
   function(req, res) {
-    var psName = "api_course_list_v1";  // Prepared Statement Name
+    var psName = "api_professor_details_v1";  // Prepared Statement Name
     var query =
       "SELECT p.id, p.name, p.deptid AS department, t.crscode AS coursecode, t.sem AS semester " +
       "FROM professor AS p " +
       "LEFT OUTER JOIN teaching AS t " +
       "ON (p.id = t.profid) " +
-      "WHERE p.id=$1 " +
-      "ORDER BY t.crscode";
+      "WHERE p.id=$1";
     var values = [
       req.params.id // $1
     ];
